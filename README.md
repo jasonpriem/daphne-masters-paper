@@ -1,4 +1,5 @@
-daphne-masters-paper
+Daphne's master's paper
 ====================
 
-Scripts to aid data collection for Daphne's masters paper
+This is a collection of scripts used for Daphne's master's paper, 
+examining UNC library search logs based on media type.

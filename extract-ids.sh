@@ -17,4 +17,10 @@ brew install grep
 brew install ssed
 
 # search the files in this directory and write all the ids to a dedicated file
-grep -oP 'UNC\w+\d' * | ssed -R "s/access\.\d+://g"
+grep -oP 'UNC\w+\d' * | ssed -R "s/access\.\d+://g" >> ../ids.txt
+
+# there are tons of duplicated IDs in the result file. Get just the unique IDs
+# cd. the sort -u method takes forever but the uniq -u method seems to remove stuff
+# that isn't a duplicate.
+sort -u ids.txt > unique-ids.txt
+

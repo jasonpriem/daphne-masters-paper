@@ -10,3 +10,5 @@ for row in db.view("main/by-type-and-id"):
     doc = row.value
     res = requests.get(query)
     doc["api_result"] = res.text
+
+    db.save(doc)

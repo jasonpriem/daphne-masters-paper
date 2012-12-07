@@ -5,7 +5,7 @@ url_template = "http://search.lib.unc.edu/search?R=[id]&output-format=export&exp
 couch_server = couchdb.Server(url="http://127.0.0.1:5984")
 db = couch_server["daphne"]
 
-for row in db.view("main/by-type-and-id"):
+for row in db.view("main/by-type-and-id")[0, "zzzzzzzzzzzz"]:
     query = url_template.replace("[id]", row["id"])
     doc = row.value
     res = requests.get(query)

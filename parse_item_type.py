@@ -25,14 +25,14 @@ assert formats == ["Video", "Book"]
 view_res = db.view("main/by_type_and_id")
 for row in view_res[["NA", 0]:["NA", "zzzzzz"]]:
     doc = row.value
-    try:
-        root = etree.XML(doc["api_result"])
-        formats = root.xpath(".//institutions/UNC/formats/item/text()")
-    except:
-        # ignore any kind of parsing error.
-        formats = ["XML parsing error"]
-
-    doc["resource_type"] = formats
-#    print doc["_id"] + ": " + str(doc["resource_type"])
+#    try:
+#        root = etree.XML(doc["api_result"])
+#        formats = root.xpath(".//institutions/UNC/formats/item/text()")
+#    except:
+#        # ignore any kind of parsing error.
+#        formats = ["XML parsing error"]
+#
+#    doc["resource_type"] = formats
+    print doc["_id"] + ": " + str(doc["resource_type"])
 
     db.save(doc)

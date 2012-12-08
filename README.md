@@ -11,3 +11,4 @@ scripts were run:
 1. parse_item_type.py
 1. download_formats_as_csv.sh
 1. normalize_csv.py
+1. prelim.R

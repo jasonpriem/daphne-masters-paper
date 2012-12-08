@@ -6,7 +6,7 @@ design_doc = {
         "by_type_and_id": {
             "map": '''function(doc) {
                 if (doc.type == "library_item") {
-                    var resourceType = doc.resource_type ? doc.resourceType : "NA"
+                    var resourceType = doc.resource_type ? doc.resource_type : "NA"
                     emit([resourceType, doc._id], doc)
                 }
             }'''
@@ -37,7 +37,11 @@ design_doc = {
                 }
             });
             while(row = getRow()) {
-                send(row.key[0] + "," + row.key[1] + "\n");
+                var formats = row.key[0]
+                if (typeof formats == "object") {
+                    formats = formats.join("|")
+                }
+                send(row.key[1] + "," + formats + "\\n");
             }
         }'''
     }

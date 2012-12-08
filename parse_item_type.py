@@ -1,4 +1,4 @@
-from mycouch import db
+from mycouch import db, couchdb_pager
 from lxml import etree
 
 """
@@ -23,16 +23,18 @@ assert formats == ["Video", "Book"]
 
 
 view_res = db.view("main/by_type_and_id")
-for row in view_res[["NA", 0]:["NA", "zzzzzz"]]:
+#for row in view_res[["NA", 0]:["NA", "zzzzzz"]]:
+
+for row in couchdb_pager(db, "main/by_type_and_id", startkey=["NA", 0], endkey=["NA", "zzzz"]):
     doc = row.value
-#    try:
-#        root = etree.XML(doc["api_result"])
-#        formats = root.xpath(".//institutions/UNC/formats/item/text()")
-#    except:
-#        # ignore any kind of parsing error.
-#        formats = ["XML parsing error"]
-#
-#    doc["resource_type"] = formats
+    try:
+        root = etree.XML(doc["api_result"])
+        formats = root.xpath(".//institutions/UNC/formats/item/text()")
+    except:
+        # ignore any kind of parsing error.
+        formats = ["XML parsing error"]
+
+    doc["resource_type"] = formats
     print doc["_id"] + ": " + str(doc["resource_type"])
 
     db.save(doc)

@@ -38,6 +38,9 @@ design_doc = {
             });
             while(row = getRow()) {
                 var formats = row.key[0]
+                if (formats == []) {
+                    formats = "none returned"
+                }
                 if (typeof formats == "object") {
                     formats = formats.join("|")
                 }

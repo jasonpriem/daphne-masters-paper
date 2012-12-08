@@ -9,4 +9,5 @@ scripts were run:
 1. read_ids_into_couch.py
 1. retrieve_api_data.py
 1. parse_item_type.py
-1. db_as_csv.py
+1. download_formats_as_csv.sh
+1. normalize_csv.py

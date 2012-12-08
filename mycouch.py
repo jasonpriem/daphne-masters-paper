@@ -39,7 +39,7 @@ design_doc = {
             while(row = getRow()) {
                 var formats = row.key[0]
                 if (formats == []) {
-                    formats = "none returned"
+                    formats = "none returned" // i think this didn't work for some reason...
                 }
                 if (typeof formats == "object") {
                     formats = formats.join("|")
